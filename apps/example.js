@@ -1,22 +1,81 @@
-// 导入 App 模块
-import { App, logger } from '#Karin'
-import Config from '../lib/config.js'
+import { plugin, segment } from '#Karin'
 
-logger.info(Config.Config.key)
-
-// 创建插件实例，名称为 hello
-const app = App.init({ name: 'hello' })
-
-// 注册一个名为 hello 的函数，当接收到消息内容以"你好"结尾时触发
-app.reg({
-  reg: '^你好$',
-  fnc: 'hello',
-  // 定义名为 hello 的异步函数
-  async hello () {
-    // 使用 this.reply 方法回复消息内容为 hello
-    this.reply({ type: 'text', text: 'hello' }, { at: true })
+export class hello extends plugin {
+  constructor () {
+    super({
+      // 必选 插件名称
+      name: 'hello',
+      // 插件描述
+      dsc: '发送你好回复hello',
+      // 监听消息事件 默认message
+      event: 'message',
+      // 优先级
+      priority: 5000,
+      // 以下rule、task、button、handler均为可选，如键入，则必须为数组
+      rule: [
+        {
+          /** 命令正则匹配 */
+          reg: '^#你好$',
+          /** 执行方法 */
+          fnc: 'hello',
+          //  是否显示操作日志 true=是 false=否
+          log: true,
+          // 权限 master,owner,admin,all
+          permission: 'all'
+        }
+      ],
+      task: [
+        {
+          // 必选 定时任务名称
+          name: '1分钟打印1次hello',
+          // 必选 cron表达式
+          cron: '0 */1 * * * *',
+          // 必选 方法名
+          fnc: 'taskHello',
+          // 是否显示操作日志 true=是 false=否
+          log: true
+        }
+      ],
+      button: [
+        {
+          // 必选 按钮命令正则
+          reg: '测试按钮',
+          // 必选 按钮执行方法
+          fnc: 'buttonTest'
+        }
+      ],
+      handler: [
+        {
+          // 必选 handler支持的事件key
+          key: 'test.message',
+          // 必选 handler的处理fnc
+          fnc: 'handlerMessage',
+          // handler优先级，数字越小优先级越高，默认2000
+          priority: 1000
+        }
+      ]
+    })
   }
-})
 
-// 导出插件实例
-export const hello = app.plugin(app)
+  async hello () {
+    // 调用 this.reply 方法回复 hello 关于参数2，请看下文
+    this.reply('hello', { at: false, recallMsg: 0, reply: true, button: false })
+  }
+
+  async taskHello () {
+    console.log('hello')
+  }
+
+  async buttonTest () {
+    // 构建一个连接按钮
+    const data = segment.button({ link: 'https://www.baidu.com', text: '百度一下' })
+    return {
+      stop: true, // 停止循环，不再遍历后续按钮
+      data
+    }
+  }
+
+  async handlerMessage (e, args, reject) {
+    // ...
+  }
+}
