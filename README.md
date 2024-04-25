@@ -12,7 +12,7 @@
 karin根目录执行以下命令克隆仓库到本地
 
 ```bash
-git clone https://github.com/karinjs/karin-plugin-template.git ./plugins/karin-plugin-template.
+git clone https://github.com/karinjs/karin-plugin-template.git ./plugins/karin-plugin-template
 ```
 
 ## 安装依赖
