@@ -18,9 +18,9 @@ export class render extends plugin {
         },
         {
           /** 命令正则匹配 */
-          reg: '^#?测试渲染$',
+          reg: '^#?渲染',
           /** 执行方法 */
-          fnc: 'render',
+          fnc: 'renderUrl',
           /** 权限 master,owner,admin,all  */
           permission: 'master'
         }
@@ -36,9 +36,10 @@ export class render extends plugin {
 
       const img = await Renderer.render({
         name: 'render',
+        file: html,
         data: {
-          tplFile: html,
-          file: image
+          file: image,
+          pluResPath: process.cwd()
         }
       })
       return this.reply(segment.image(img))
@@ -49,20 +50,22 @@ export class render extends plugin {
   }
 
   async renderUrl () {
-    const file = this.e.msg.replace(/^#?网页渲染/, '').trim()
+    const file = this.e.msg.replace(/^#?渲染/, '').trim()
     try {
       const img = await Renderer.render({
         name: 'render',
-        data: {
-          tplFile: file || 'https://whitechi73.github.io/OpenShamrock/',
-          setViewport: {
-            width: 1920,
-            height: 1080,
-            deviceScaleFactor: 3
-          }
+        file: file || 'https://whitechi73.github.io/OpenShamrock/',
+        type: 'png',
+        pageGotoParams: {
+          waitUntil: 'load'
+        },
+        setViewport: {
+          width: 1920,
+          height: 1080,
+          deviceScaleFactor: 1
         }
       })
-      return this.reply(segment.image(img))
+      this.reply(segment.image(img))
     } catch (e) {
       logger.error(e)
       return this.reply(e.message)
