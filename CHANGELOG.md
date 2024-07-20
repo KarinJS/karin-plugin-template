@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/KarinJS/karin-plugin-template/compare/v1.0.0...v1.0.1) (2024-07-20)
+
+
+### Bug Fixes
+
+* 测试2 ([b6a0b8d](https://github.com/KarinJS/karin-plugin-template/commit/b6a0b8d0f9175916ed6fbb3c034b4ee30f168c07))
+
 ## 1.0.0 (2024-07-20)
 
 
