@@ -16,7 +16,8 @@
     "addpkg": "node pkg.js --type add",
     "delpkg": "node pkg.js --type del",
     "install": "npm run addpkg && npm install",
-    "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json && npm run delpkg"
+    "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json && npm run delpkg",
+    "pub": "npm publish --access public"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
@@ -28,7 +29,6 @@
     "neostandard": "^0.11.1",
     "tsc-alias": "^1.8.10",
     "typescript": "^5.5.3",
-    "pub": "npm publish --access public"
   },
   "karin": {
     "apps": [
