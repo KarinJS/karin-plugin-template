@@ -1,32 +1,31 @@
-import lodash from 'lodash'
-import moment from 'moment'
+import { lodash, moment } from 'node-karin/modules.js'
 
 class Common {
   /**
    * 生成随机数
-   * @param {number} min - 最小值
-   * @param {number} max - 最大值
-   * @returns {number}
+   * @param min - 最小值
+   * @param max - 最大值
+   * @returns
    */
-  random (min, max) {
+  random (min: number, max: number) {
     return lodash.random(min, max)
   }
 
   /**
    * 睡眠函数
-   * @param {number} ms - 毫秒
+   * @param ms - 毫秒
    */
-  sleep (ms) {
+  sleep (ms: number | undefined) {
     return new Promise(resolve => setTimeout(resolve, ms))
   }
 
   /**
    * 使用moment返回时间
-   * @param {string} [format] - 格式
+   * @param format - 格式
    */
   time (format = 'YYYY-MM-DD HH:mm:ss') {
     return moment().format(format)
   }
 }
 
-export default new Common()
+export const common = new Common()

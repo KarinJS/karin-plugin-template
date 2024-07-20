@@ -1,12 +1,53 @@
 {
-  "name": "karin-plugin-template",
-  "version": "1.0.0",
+  "name": "karin-plugin-template-ts",
+  "version": "0.0.1",
   "author": "Lain",
   "type": "module",
-  "dependencies": {
+  "description": "karin plugin template",
+  "homepage": "https://github.com/KarinJS/karin-plugin-template-ts",
+  "bugs": {
+    "url": "https://github.com/KarinJS/karin-plugin-template-ts/issues"
   },
-  "imports": {
-    "#Karin": "./lib/imports/index.js",
-    "#template": "./lib/imports/template.js"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KarinJS/karin-plugin-template-ts.git"
+  },
+  "scripts": {
+    "addpkg": "node pkg.js --type add",
+    "delpkg": "node pkg.js --type del",
+    "install": "npm addpkg && npm install",
+    "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json && npm run delpkg"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/lodash": "^4.17.7",
+    "@types/node": "^20.14.11",
+    "@types/node-schedule": "^2.1.7",
+    "@types/ws": "^8.5.11",
+    "eslint": "^9.7.0",
+    "neostandard": "^0.11.1",
+    "tsc-alias": "^1.8.10",
+    "typescript": "^5.5.3",
+    "pub": "npm publish --access public"
+  },
+  "karin": {
+    "apps": [
+      "lib/apps"
+    ],
+    "outDir": "lib",
+    "rootDir": "src"
+  },
+  "files": [
+    "/lib/**/*.js",
+    "/lib/**/*.d.ts",
+    "/config/*.yaml",
+    "resources",
+    "LICENSE",
+    "package.json",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   }
 }

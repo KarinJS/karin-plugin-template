@@ -1,0 +1,47 @@
+name: Release and Publish # 发布和发布的工作流程名称
+on:
+  push:
+    branches:
+      - main # 仅当推送到 main 分支时触发
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  release-please:
+    # 设置工作流程运行环境为 Ubuntu
+    runs-on: ubuntu-latest
+    steps:
+      # 使用 release-please-action@v4 动作
+      - uses: google-github-actions/release-please-action@v4
+        id: release
+        with:
+          # 设置发布类型为 Node.js
+          release-type: node
+          # 设置包名
+          package-name: karin-plugin-adapter-icqq
+          # 设置发起PR的默认分支
+          default-branch: main
+      # 检出代码
+      - uses: actions/checkout@v4
+        if: ${{ steps.release.outputs.release_created }}
+      # 设置 Node.js 环境
+      - uses: actions/setup-node@v4
+        with:
+          # 设置 Node.js 版本
+          node-version: 20
+          # 设置 npm 注册表 URL
+          registry-url: "https://registry.npmjs.org"
+        if: ${{ steps.release.outputs.release_created }}
+      # 安装依赖
+      - run: npm run install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.RELEASE }}
+        if: ${{ steps.release.outputs.release_created }}
+      # 编译
+      - run: npm run build
+        if: ${{ steps.release.outputs.release_created }}
+      # # 发布
+      # - run: npm run pub
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # 发布到 npm
+      #   if: ${{ steps.release.outputs.release_created }} # 仅在创建发布时执行
