@@ -1,17 +1,20 @@
-[Karin](https://github.com/karinjs/karin) 插件包模板仓库
+# karin 模板仓库
 
----
-
-- fork 本仓库
-- 拉取fork后的仓库到本地
-- 修改 `package.json` 文件中的 `name` 和 `description` 字段
-- 将 `README.md` 文件中的内容替换为自己的插件说明。
 
 ## 克隆仓库
 
-karin根目录执行以下命令克隆仓库到本地
+> 需要注意 请先安装`karin`哦~
+
+打开[模板仓库](https://github.com/KarinJS/karin-plugin-template)
+
+点击`Use this template`或`使用此模板`按钮，创建自己的仓库。
+![202404121412587](https://cdn.jsdelivr.net/gh/Zyy955/imgs/img/202404121412587.png)
+
+填写仓库名称，描述，选择是否公开。
+![202404121414580](https://cdn.jsdelivr.net/gh/Zyy955/imgs/img/202404121414580.png)
 
 ```bash
+# 请改成你自己的仓库
 git clone https://github.com/karinjs/karin-plugin-template.git ./plugins/karin-plugin-template
 ```
 
@@ -21,9 +24,8 @@ git clone https://github.com/karinjs/karin-plugin-template.git ./plugins/karin-p
 pnpm install --filter=karin-plugin-template
 ```
 
-
 ## 开发调试
 
 ```bash
-node . --dev
+npx karin dev
 ```

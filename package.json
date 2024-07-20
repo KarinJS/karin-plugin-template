@@ -1,12 +1,20 @@
 {
   "name": "karin-plugin-template",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "author": "Lain",
   "type": "module",
-  "dependencies": {
+  "description": "karin plugin template",
+  "homepage": "https://github.com/KarinJS/karin-plugin-template",
+  "bugs": {
+    "url": "https://github.com/KarinJS/karin-plugin-template/issues"
   },
-  "imports": {
-    "#Karin": "./lib/imports/index.js",
-    "#template": "./lib/imports/template.js"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KarinJS/karin-plugin-template.git"
+  },
+  "karin": {
+    "apps": [
+      "lib/apps"
+    ]
   }
 }
