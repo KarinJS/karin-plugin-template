@@ -32,8 +32,8 @@ jobs:
           # 设置 npm 注册表 URL
           registry-url: "https://registry.npmjs.org"
         if: ${{ steps.release.outputs.release_created }}
-      # 安装依赖
-      - run: npm run install
+      # 添加node-karin并安装依赖
+      - run: npm run init
         if: ${{ steps.release.outputs.release_created }}
       # 编译
       - run: npm run build
