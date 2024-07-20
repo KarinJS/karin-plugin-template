@@ -15,7 +15,7 @@
   "scripts": {
     "addpkg": "node pkg.js --type add",
     "delpkg": "node pkg.js --type del",
-    "install": "npm addpkg && npm install",
+    "install": "npm run addpkg && npm install",
     "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json && npm run delpkg"
   },
   "devDependencies": {

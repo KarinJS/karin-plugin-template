@@ -34,8 +34,6 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
       # 安装依赖
       - run: npm run install
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.RELEASE }}
         if: ${{ steps.release.outputs.release_created }}
       # 编译
       - run: npm run build
