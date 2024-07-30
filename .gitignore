@@ -19,9 +19,6 @@ lerna-debug.log*
 /logs/
 /temp/
 
-# 配置
-/lib
-
 # 依赖
 node_modules/
 config/config/pm2.yaml
