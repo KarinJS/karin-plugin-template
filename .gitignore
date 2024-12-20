@@ -22,3 +22,6 @@ lerna-debug.log*
 # 依赖
 node_modules/
 config/config/pm2.yaml
+/@karinjs
+.pnpmfile.cjs
+index.js

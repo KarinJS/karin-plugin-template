@@ -14,18 +14,24 @@
 ![202404121414580](https://cdn.jsdelivr.net/gh/Zyy955/imgs/img/202404121414580.png)
 
 ```bash
-# 请改成你自己的仓库
-git clone https://github.com/karinjs/karin-plugin-template.git ./plugins/karin-plugin-template
+# 请改成你自己的仓库 ！！！请单独一个文件夹 不需要放到plugins中了
+git clone https://github.com/karinjs/karin-plugin-template.git
 ```
 
 ## 安装依赖
 
 ```bash
-pnpm install --filter=karin-plugin-template
+pnpm i
 ```
 
-## 开发调试
+## 初始化
+
+> `pnpm run init` 会自动生成一个`.pnpmfile.cjs`文件，请删除这个文件
 
 ```bash
-npx karin dev
+pnpm run init
+```
+
+```bash
+pnpm dev
 ```
